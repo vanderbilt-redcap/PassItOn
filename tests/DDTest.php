@@ -37,6 +37,11 @@ final class DDTest extends \ExternalModules\ModuleBaseTest
 			$screeningProject = $module->getProjectSetting("screening_project",$project_id);
 			$uaProject = $module->getProjectSetting("user_access_project",$project_id);
 
+			## Skip DD test on projects that don't have a screening or UA project set
+			if($screeningProject == NULL && $uaProject == NULL) {
+				continue;
+			}
+			
 			$this->assertNotEquals($screeningProject,NULL);
 			$this->assertNotEquals($uaProject,NULL);
 
